@@ -1,4 +1,5 @@
 
+import { testGraph } from "./modules/test.js"
 
 d3.json('english.json').then(data => {
   console.log(data)
@@ -28,4 +29,6 @@ svg.append("rect")
   .attr("width", 200)
   .attr("height", 200)
   .attr("fill", 'hotpink')
+
+svg.call(testGraph)
 
