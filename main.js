@@ -1,17 +1,23 @@
 
 import { testGraph } from "./modules/test.js"
 import { getCityData } from "./modules/dataPrep.js"
-import { canvas, initParticles, animateParticles } from "./modules/canvasParticles.js"
+import { canvas, initParticles, animateParticles } from "./modules/aqiParticles.js"
+import { cigsViz } from "./modules/cigsViz.js"
 
 let rawData;
 let cityData; 
-let selectedCity = 'Lucknow'
-let numParticles = 100
+// Initialise data 
+let selectedCity = ''
+let numParticles = 0
+let numCigs
 
-
-const svg = d3.select("#graph-wrapper").append("svg")
-  .attr("width", 200)
-  .attr("height", 200)
+// Dimensions for the cigs in graph - need for responsiveness
+const sigsDims = {
+  width: 30,
+  height: 80,
+  rotate: 60,
+  distance: 0
+}
 
 
 // When a city is selected, update the selectedCity and nums for aqi and 
@@ -20,25 +26,12 @@ const citiesDropdown = document.getElementById('cities-select')
 citiesDropdown.addEventListener('change', e => {
   selectedCity = e.target.value;
   numParticles = cityData.filter(city => city.name === selectedCity)[0].aqi
+  const aqiValue = document.querySelector('.aqi-value')
+  aqiValue.innerHTML = numParticles
   graph(selectedCity)
 })
 
-const cigGraph = (container) => {
-  const imagePath = './ciggrette_icon.png';
-  container.selectAll('img')
-    .data([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-    .join('img')
-      .attr('src', imagePath)
-      //.style('position', 'absolute')
-      .style('margin-left', (d, i) => `${2}px`)
-      //.style('top', (d, i) =>  i<=5 ? `${350}px` : '420px')
-      .style('transform', (d, i) => `rotate(${20*Math.random()-10}deg)`)
-      .style('transform', (d, i) => `rotate(60deg)`)
-      .style('height', '80px')
-      .style('width', '30px')
-      .style('opacity', (d, i) => i<5 ? 1 : 0.1)
-}
-
+const domElement = d3.select("#cigarette");
 
 
 async function graph(selectedCity) {
@@ -55,8 +48,7 @@ async function graph(selectedCity) {
 
   // 3. Call the graphs on the container with the data
   //svg.call(testGraph, cityData)
-  const domElement = d3.select("#cigarette");
-  domElement.call(cigGraph)
+  domElement.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
 
   // 4. Draw particles 
   initParticles(numParticles)
@@ -66,12 +58,19 @@ async function graph(selectedCity) {
 graph(selectedCity)
 animateParticles()
 
-
+// On resize, change the canvas width and cigarette dims to fit to smaller screens
 window.addEventListener('resize', e => {
   if (window.innerWidth < 600) {
-    canvas.width = 300
+    canvas.width = 280
+    sigsDims.height = 70
+    sigsDims.rotate = 40
+    sigsDims.distance = -10
+    domElement.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
   } else {
     canvas.width = 400
+    sigsDims.height = 80
+    sigsDims.rotate = 60
+    sigsDims.distance = 0
+    domElement.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
   }
 })
-

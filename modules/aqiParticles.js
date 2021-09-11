@@ -72,7 +72,6 @@ function initParticles(numParticles) {
       particle.draw()
     }
   }
-  console.log(particlesArray)
 }
 
 // Animate the particles 
