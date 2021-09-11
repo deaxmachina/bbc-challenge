@@ -42,6 +42,35 @@ select {
   color: black;
 }
 
+.particles-wrapper {
+  position: relative;
+  margin: auto;
+  width: 100%;
+}
+
+#num-particles {
+  position: absolute;
+  top: 60px;
+  left: calc(50% - 35px);
+  background-color: #b3c9dd;
+  border-radius: 100%;
+  padding: 12px;
+  border: 2px dashed rgb(226, 220, 209);
+  width: 70px;
+  height: 70px;
+}
+
+#num-particles h3 {
+  margin: auto;
+  color: #111;
+  font-size: 24px;
+}
+#num-particles small {
+  margin: auto;
+  color: #444;
+  font-size: 10px !important;
+}
+
 
 /*********** For the search menu ************/
 
@@ -81,7 +110,7 @@ select {
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%; 
-
+  z-index: 100;
 }
 
 #cityList li {
