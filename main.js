@@ -3,7 +3,7 @@ import { testGraph } from "./modules/test.js"
 import { getCityData } from "./modules/dataPrep.js"
 import { canvas, initParticles, animateParticles } from "./modules/aqiParticles.js"
 import { cigsViz } from "./modules/cigsViz.js"
-import { selectMenu } from "./modules/selectMenu.js"
+import { selectMenu, hideDropdownList, searchMatches } from "./modules/selectMenu.js"
 
 let rawData;
 let cityData; 
@@ -46,6 +46,9 @@ citiesDropdown.addEventListener('change', e => {
 })
 
 const sigsContainer = d3.select("#cigarette");
+const input = document.getElementById('cityInput');
+const ul = document.getElementById("cityList");
+const li = ul.getElementsByTagName('li');
 
 
 async function graph(selectedCity) {
@@ -87,3 +90,16 @@ window.addEventListener('resize', e => {
     sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
   }
 })
+
+
+hideDropdownList(li)
+
+for (const liEl of li) {
+  liEl.addEventListener('click', e => {
+    input.value = e.target.innerHTML
+    hideDropdownList()
+  })
+}
+
+input.addEventListener('keyup', () => searchMatches(li, input))
+

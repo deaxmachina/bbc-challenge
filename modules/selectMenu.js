@@ -7,32 +7,32 @@ const selectMenu = (container, cityData) => {
 }
 
 
-const input = document.getElementById('cityInput');
-const ul = document.getElementById("cityList");
-const li = ul.getElementsByTagName('li');
+// const input = document.getElementById('cityInput');
+// const ul = document.getElementById("cityList");
+// const li = ul.getElementsByTagName('li');
 
-const hideDropdownList = () => {
+const hideDropdownList = (li) => {
   for (const liEl of li) {
     liEl.style.display = "none";
   }
 }
 
-hideDropdownList()
+// hideDropdownList()
 
-for (const liEl of li) {
-  liEl.addEventListener('click', e => {
-    input.value = e.target.innerHTML
-    hideDropdownList()
-  })
-}
+// for (const liEl of li) {
+//   liEl.addEventListener('click', e => {
+//     input.value = e.target.innerHTML
+//     hideDropdownList()
+//   })
+// }
 
-input.addEventListener('keyup', e => myFunction(e))
-function myFunction(e) {
+// input.addEventListener('keyup', e => searchMatches(e))
+
+function searchMatches(li, input) {
   let filter = input.value.toUpperCase();
-  
   // If input is empty, hide options
   if (filter.length === 0) {
-    hideDropdownList()
+    hideDropdownList(li)
   } else {
     // Loop through all list items, and hide those who don't match the search query
     for (let i = 0; i < li.length; i++) {
@@ -49,4 +49,4 @@ function myFunction(e) {
 
 
 
-export { selectMenu }
+export { selectMenu, hideDropdownList, searchMatches }
