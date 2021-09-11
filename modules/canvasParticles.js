@@ -1,11 +1,10 @@
 const canvas = document.getElementById('canvas')
 // Set canvas size based on current display dims
-// if (window.innerWidth < 600) {
-//   canvas.width = 300
-// } else {
-//   canvas.width = 400
-// }
-canvas.width = 400
+if (window.innerWidth < 600) {
+  canvas.width = 300
+} else {
+  canvas.width = 400
+}
 canvas.height = 200
 const ctx = canvas.getContext('2d');
 
@@ -55,18 +54,17 @@ class Particle {
 }
 
 // Create particles array 
-let numParticles = 100
 let particlesArray = []
-function initParticles() {
-  //let particlesArray = []
+function initParticles(numParticles) {
+  particlesArray = [] // Clear array as we update it dynamically based on num particles
   for (let i = 0; i < numParticles; i++) {
-    let size = (Math.random() * 3) + 2
+    const size = (Math.random() * 3) + 2
     // Initialise the particles at random (x, y) positions
-    let x = Math.random() * ((canvas.width - size*2) - (size*2)) + size*2
-    let y = Math.random() * ((canvas.height - size*2) - (size*2)) + size*2
-    let dx = Math.random();
-    let dy = Math.random();
-    let colour = '#cf6c07' //'#db7c26'
+    const x = Math.random() * ((canvas.width - size*2) - (size*2)) + size*2
+    const y = Math.random() * ((canvas.height - size*2) - (size*2)) + size*2
+    const dx = Math.random()*0.5;
+    const dy = Math.random()*0.5;
+    const colour = '#cf6c07' //'#db7c26'
 
     particlesArray.push(new Particle(x, y, dx, dy, size, colour))
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -74,17 +72,17 @@ function initParticles() {
       particle.draw()
     }
   }
-  //return particlesArray
+  console.log(particlesArray)
 }
 
 // Animate the particles 
 function animateParticles() {
   requestAnimationFrame(animateParticles)
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-    for (const particle of particlesArray) {
-      particle.update()
-    }
+  for (const particle of particlesArray) {
+    particle.update()
+  }
 }
 
 
-export { initParticles, animateParticles }
+export { canvas, initParticles, animateParticles }

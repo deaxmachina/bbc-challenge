@@ -34,3 +34,7 @@ img {
   text-align: center;
   position: relative;
 }
+
+select {
+  color: black;
+}

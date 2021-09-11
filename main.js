@@ -1,7 +1,12 @@
 
 import { testGraph } from "./modules/test.js"
 import { getCityData } from "./modules/dataPrep.js"
-import { initParticles, animateParticles } from "./modules/canvasParticles.js"
+import { canvas, initParticles, animateParticles } from "./modules/canvasParticles.js"
+
+let rawData;
+let cityData; 
+let selectedCity = 'Lucknow'
+let numParticles = 100
 
 
 const svg = d3.select("#graph-wrapper").append("svg")
@@ -9,13 +14,14 @@ const svg = d3.select("#graph-wrapper").append("svg")
   .attr("height", 200)
 
 
-// Control the number of particles 
-//let numParticles = 200
-// const particlesDropdown = document.getElementById('particles')
-// particlesDropdown.addEventListener('change', e => {
-//   numParticles = +e.target.value
-//   graph(numParticles)
-// })
+// When a city is selected, update the selectedCity and nums for aqi and 
+// and draw the graph with updated values
+const citiesDropdown = document.getElementById('cities-select')
+citiesDropdown.addEventListener('change', e => {
+  selectedCity = e.target.value;
+  numParticles = cityData.filter(city => city.name === selectedCity)[0].aqi
+  graph(selectedCity)
+})
 
 const cigGraph = (container) => {
   const imagePath = './ciggrette_icon.png';
@@ -35,33 +41,37 @@ const cigGraph = (container) => {
 
 
 
-async function graph() {
-  // 1. Load in the raw data
-  const rawData = await d3.json('english.json')
-  console.log(rawData)
-  const cityData = getCityData(rawData)
-  console.log(cityData)
+async function graph(selectedCity) {
+  // 1. Load in the raw data and extract useful data in array format
+  rawData = await d3.json('english.json')
+  cityData = getCityData(rawData)
 
-  // 2. Call the graphs on the container with the data
+  // 2. Add options for each city from the data 
+  d3.select('#cities-select').selectAll('option')
+    .data(cityData)
+    .join('option')
+      .attr('value', d => d.name)
+      .html(d => d.name)
+
+  // 3. Call the graphs on the container with the data
   //svg.call(testGraph, cityData)
   const domElement = d3.select("#cigarette");
   domElement.call(cigGraph)
 
-  // 3. Draw particles 
-  initParticles()
-  //console.log('particlesArray', particlesArray)
-  animateParticles()
+  // 4. Draw particles 
+  initParticles(numParticles)
+  //animateParticles() -- make sure this happens after graph and it is not ever called again
 }
 
-graph()
+graph(selectedCity)
+animateParticles()
 
 
-// window.addEventListener('resize', e => {
-//   if (window.innerWidth < 600) {
-//     canvas.width = 300
-//   } else {
-//     canvas.width = 400
-//   }
-//   console.log('resized the window')
-// })
+window.addEventListener('resize', e => {
+  if (window.innerWidth < 600) {
+    canvas.width = 300
+  } else {
+    canvas.width = 400
+  }
+})
 
