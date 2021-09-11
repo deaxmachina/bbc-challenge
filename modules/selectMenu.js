@@ -36,7 +36,7 @@ function myFunction(e) {
   } else {
     // Loop through all list items, and hide those who don't match the search query
     for (let i = 0; i < li.length; i++) {
-      const a = li[i].getElementsByTagName("a")[0];
+      const a = li[i];
       const txtValue = a.textContent || a.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
         li[i].style.display = "";
