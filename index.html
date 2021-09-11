@@ -14,7 +14,23 @@
     This text will display on all the pages, regardless of whether it is IE or 
     other browsers
   </p>
+  <h2>Cigarettes</h2>
+  <p>Testing out a cigarette image</p>
+
+  <!-- Testing a dropdown for particles to update -->
+  <label for="particles">Choose a number for particles:</label>
+  <select name="particles" id="particles">
+    <option value="10">10</option>
+    <option value="100">100</option>
+    <option value="200">200</option>
+    <option value="300">300</option>
+  </select>
+  <br><br><br>
+  
+  <canvas id='canvas' width='0' height='0'></canvas>
+  <div id='cigarette'></div>
   <div id="graph-wrapper"></div>
+  <img src="img-test.png">
   <noscript>
     <p>This alternative thing will display if no JavaScript</p>
     <img src="img-test.png">
@@ -25,9 +41,11 @@
   <!-- <script src="script.js"></script> -->
 
   <!-- Browsers with ES module support load this file. -->
+  <!-- note: you don't need to include the modules as well as scripts  -->
   <!-- <script type="module" src="./test.js"></script> -->
-  <script type="module" src="./script.js"></script>
+  <script type="module" src="./main.js"></script>
   <!-- Older browsers load this file (and module-supporting -->
+  <!-- Note that if you use this your noscript tags will no longer work -->
   <script nomodule src="ie.js"></script>
 
 </body>

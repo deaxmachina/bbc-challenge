@@ -1,11 +1,36 @@
+body, * {
+  font-family: Arial,Helvetica,sans-serif;
+  color: #222;
+  color: #fffcf2;
+  
+}
+
+body {
+  text-align: center;
+  margin: auto;
+}
+
 h1 {
   padding: 30px;
 }
 
 body {
-  background-color: aquamarine;
+  background-color: #ffffff;
+  background-color: #1f1c1b;
 }
 
 img {
   width: 60%;
+}
+
+#canvas {
+  /* background: #7db7e6; */
+  border-radius: 10%;
+  /* border: 3px solid rgb(90, 45, 45); */
+  box-shadow: 0px 0px 20px #b3c9dd;
+}
+
+#cigarette {
+  text-align: center;
+  position: relative;
 }
