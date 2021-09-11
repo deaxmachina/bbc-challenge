@@ -3,7 +3,7 @@ import { testGraph } from "./modules/test.js"
 import { getCityData } from "./modules/dataPrep.js"
 import { canvas, initParticles, animateParticles } from "./modules/aqiParticles.js"
 import { cigsViz } from "./modules/cigsViz.js"
-import { selectMenu, hideDropdownList, searchMatches } from "./modules/selectMenu.js"
+import { selectMenu } from "./modules/selectMenu.js"
 
 let rawData;
 let cityData; 
@@ -48,7 +48,8 @@ citiesDropdown.addEventListener('change', e => {
 const sigsContainer = d3.select("#cigarette");
 const input = document.getElementById('cityInput');
 const ul = document.getElementById("cityList");
-const li = ul.getElementsByTagName('li');
+//const li = ul.getElementsByTagName('li');
+//let li
 
 
 async function graph(selectedCity) {
@@ -61,11 +62,39 @@ async function graph(selectedCity) {
   selectMenuContainer.call(selectMenu, cityData)
 
   const cityInput = d3.select('#cityInput')
-  cityInput.selectAll('li')
+  const cityList = d3.select('#cityList')
+  const listCities = cityList.selectAll('li')
     .data(cityData)
     .join('li')
     .html(d => d.name)
+    .classed('city-option', true)
+    .style('display', 'none')
+    .on('click', function(e) {
+      input.value = e.target.innerHTML
+      listCities.style('display', 'none')
+    })
 
+
+  cityInput.on('keyup', function(e, datum) {
+    let filter = this.value.toUpperCase();
+    // If input is empty, hide options
+    if (filter.length === 0) {
+      listCities.style('display', 'none')
+    } else {
+      // Loop through all list items, and hide those who don't match the search query
+      for (let i = 0; i < listCities.nodes().length; i++) {
+        const a = listCities.nodes()[i];
+        console.log(a)
+        const txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          listCities.nodes()[i].style.display = "";
+        } else {
+          listCities.nodes()[i].style.display = "none";
+        }
+      }
+    }
+  })
+  
   // 3. Call the graphs on the container with the data
   //svg.call(testGraph, cityData)
   sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
@@ -90,16 +119,4 @@ window.addEventListener('resize', e => {
     sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
   }
 })
-
-
-hideDropdownList(li)
-
-for (const liEl of li) {
-  liEl.addEventListener('click', e => {
-    input.value = e.target.innerHTML
-    hideDropdownList()
-  })
-}
-
-input.addEventListener('keyup', () => searchMatches(li, input))
 
