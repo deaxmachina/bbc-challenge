@@ -8,7 +8,7 @@ import { cigsViz } from "./modules/cigsViz.js"
 const sigsContainer = d3.select("#cigarette")
 const cityInput = d3.select('#cityInput')
 const cityList = d3.select('#cityList')
-cityList.style('display', 'none')
+cityList.style('display', 'none') // Need for Edge, Chrome on Windows 
 const aqiValue = d3.select('.aqi-value')
 
 // Initialise data 
