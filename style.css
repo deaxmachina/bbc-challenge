@@ -70,7 +70,7 @@ select {
   position: absolute;
   left: calc(50% - 166px);
   max-height: 200px;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 #cityList li {

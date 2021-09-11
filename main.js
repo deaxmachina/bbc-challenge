@@ -8,6 +8,7 @@ import { cigsViz } from "./modules/cigsViz.js"
 const sigsContainer = d3.select("#cigarette")
 const cityInput = d3.select('#cityInput')
 const cityList = d3.select('#cityList')
+cityList.style('display', 'none')
 const aqiValue = d3.select('.aqi-value')
 
 // Initialise data 
@@ -51,7 +52,7 @@ if (window.innerWidth < 600) {
 // })
 
 const getCitiesMenu = (cityData, cityInput) => {
-  const listCities = cityList.selectAll('li')
+  const cityListLi = cityList.selectAll('li')
     .data(cityData)
     .join('li')
     .html(d => d.name)
@@ -60,9 +61,9 @@ const getCitiesMenu = (cityData, cityInput) => {
     .on('click', function(e) {
       selectedCity = e.target.innerHTML
       cityInput.property('value', selectedCity) // Search field input updates to city
-      listCities.style('display', 'none') // Hide list of cities again
+      cityListLi.style('display', 'none') // Hide list of cities again
       numParticles = cityData.filter(city => city.name === selectedCity)[0].aqi // Update num particles for particle graph
-      // aqiValue.html(numParticles)
+      aqiValue.html(numParticles)
       graph(selectedCity) // Run the graph with the selected city
     })
 
@@ -71,16 +72,17 @@ const getCitiesMenu = (cityData, cityInput) => {
     let filter = this.value.toUpperCase(); // Current input
     // If input is empty, hide options
     if (filter.length === 0) {
-      listCities.style('display', 'none')
+      cityListLi.style('display', 'none')
     } else {
       // Loop through all list items, and hide those who don't match the search query
-      for (let i = 0; i < listCities.nodes().length; i++) {
-        const city = listCities.nodes()[i];
+      for (let i = 0; i < cityListLi.nodes().length; i++) {
+        const city = cityListLi.nodes()[i];
         const txtValue = city.textContent || city.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          listCities.nodes()[i].style.display = "";
+          cityList.style('display', "")
+          cityListLi.nodes()[i].style.display = "";
         } else {
-          listCities.nodes()[i].style.display = "none";
+          cityListLi.nodes()[i].style.display = "none";
         }
       }
     }
