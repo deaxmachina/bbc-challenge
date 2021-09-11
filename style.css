@@ -41,18 +41,29 @@ select {
 
 
 /*********** For the search menu ************/
-#myInput {
+#cityInput {
+  background-image: url('./search.svg'); /* Add a search icon to input */
+  background-position: 280px 7px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  background-size: 30px;
+  
+
   width: 300px; 
   font-size: 16px; 
-  padding: 12px; 
-  border: 1px solid #b3c9dd; 
+  padding: 15px 12px; 
+  border: 3px solid #f6f6f6; 
   margin-bottom: 2px; 
   color: black;
   background-color: #f6f6f6;
   outline: none;
 }
 
-#myUL {
+#cityInput:active, #cityInput:focus {
+  border: 3px solid #b3c9dd; 
+}
+
+
+#cityList {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -60,7 +71,7 @@ select {
   left: calc(50% - 163px);
 }
 
-#myUL li {
+#cityList li {
   border: 1px solid #ddd; 
   margin-top: -1px; 
   background-color: #f6f6f6; 
@@ -71,6 +82,6 @@ select {
   cursor: pointer;
 }
 
-#myUL li:hover:not(.header) {
+#cityList li:hover:not(.header) {
   background-color: #eee; /* Add a hover effect to all links, except for headers */
 }

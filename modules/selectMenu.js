@@ -7,8 +7,8 @@ const selectMenu = (container, cityData) => {
 }
 
 
-const input = document.getElementById('myInput');
-const ul = document.getElementById("myUL");
+const input = document.getElementById('cityInput');
+const ul = document.getElementById("cityList");
 const li = ul.getElementsByTagName('li');
 
 const hideDropdownList = () => {

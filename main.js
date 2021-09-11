@@ -57,6 +57,12 @@ async function graph(selectedCity) {
   const selectMenuContainer = d3.select('#cities-select')
   selectMenuContainer.call(selectMenu, cityData)
 
+  const cityInput = d3.select('#cityInput')
+  cityInput.selectAll('li')
+    .data(cityData)
+    .join('li')
+    .html(d => d.name)
+
   // 3. Call the graphs on the container with the data
   //svg.call(testGraph, cityData)
   sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
