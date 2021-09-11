@@ -3,6 +3,7 @@ import { testGraph } from "./modules/test.js"
 import { getCityData } from "./modules/dataPrep.js"
 import { canvas, initParticles, animateParticles } from "./modules/aqiParticles.js"
 import { cigsViz } from "./modules/cigsViz.js"
+import { selectMenu } from "./modules/selectMenu.js"
 
 let rawData;
 let cityData; 
@@ -13,13 +14,13 @@ let numCigs
 
 // Dimensions for the cigs in graph - need for responsiveness
 let sigsDims = {}
-let sigsDimsSmall = {
+const sigsDimsSmall = {
   width: 30,
   height: 70,
   rotate: 40,
   distance: -10
 }
-let sigsDimsLarge = {
+const sigsDimsLarge = {
   width: 30,
   height: 80,
   rotate: 60,
@@ -44,7 +45,7 @@ citiesDropdown.addEventListener('change', e => {
   graph(selectedCity)
 })
 
-const domElement = d3.select("#cigarette");
+const sigsContainer = d3.select("#cigarette");
 
 
 async function graph(selectedCity) {
@@ -53,15 +54,12 @@ async function graph(selectedCity) {
   cityData = getCityData(rawData)
 
   // 2. Add options for each city from the data 
-  d3.select('#cities-select').selectAll('option')
-    .data(cityData)
-    .join('option')
-      .attr('value', d => d.name)
-      .html(d => d.name)
+  const selectMenuContainer = d3.select('#cities-select')
+  selectMenuContainer.call(selectMenu, cityData)
 
   // 3. Call the graphs on the container with the data
   //svg.call(testGraph, cityData)
-  domElement.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
+  sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
 
   // 4. Draw particles 
   initParticles(numParticles)
@@ -76,10 +74,10 @@ window.addEventListener('resize', e => {
   if (window.innerWidth < 600) {
     canvas.width = 280
     sigsDims = { ...sigsDimsSmall }
-    domElement.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
+    sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
   } else {
     canvas.width = 400
     sigsDims = { ...sigsDimsLarge }
-    domElement.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
+    sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
   }
 })
