@@ -12,11 +12,24 @@ let numParticles = 0
 let numCigs
 
 // Dimensions for the cigs in graph - need for responsiveness
-const sigsDims = {
+let sigsDims = {}
+let sigsDimsSmall = {
+  width: 30,
+  height: 70,
+  rotate: 40,
+  distance: -10
+}
+let sigsDimsLarge = {
   width: 30,
   height: 80,
   rotate: 60,
   distance: 0
+}
+// Set canvas size based on current display dims
+if (window.innerWidth < 600) {
+  sigsDims = { ...sigsDimsSmall }
+} else {
+  sigsDims = { ...sigsDimsLarge }
 }
 
 
@@ -62,15 +75,11 @@ animateParticles()
 window.addEventListener('resize', e => {
   if (window.innerWidth < 600) {
     canvas.width = 280
-    sigsDims.height = 70
-    sigsDims.rotate = 40
-    sigsDims.distance = -10
+    sigsDims = { ...sigsDimsSmall }
     domElement.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
   } else {
     canvas.width = 400
-    sigsDims.height = 80
-    sigsDims.rotate = 60
-    sigsDims.distance = 0
+    sigsDims = { ...sigsDimsLarge }
     domElement.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
   }
 })
