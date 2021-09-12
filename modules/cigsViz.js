@@ -1,4 +1,4 @@
-const imagePath = './ciggrette_icon.png'; // the cigarette image
+const imagePath = './img/ciggrette_icon.png'; // the cigarette image
 
 // this only needs to be drawn once? 
 const cigsViz = (container, selectedCity, cityData, numCigs, sigsDims) => {

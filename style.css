@@ -116,6 +116,7 @@ section {
 .city-menu {
   position: relative;
   margin: auto;
+  margin-bottom: 40px;
   width: 300px; 
 }
 
@@ -129,7 +130,7 @@ section {
 
 .city-input {
   background-color: var(--lightColour);
-  background-image: url('./search.svg'); /* Add a search icon to input */
+  background-image: url('./img/search.svg'); /* Add a search icon to input */
   background-position: 95% 7px; /* Position the search icon */
   background-repeat: no-repeat; 
   background-size: 30px;

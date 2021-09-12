@@ -105,7 +105,7 @@ const getCitiesMenu = (cityData, cityInput) => {
 
 async function graph(selectedCity) {
   // 1. Load in the raw data and extract useful data in array format
-  rawData = await d3.json('english.json')
+  rawData = await d3.json('./data/english.json')
   cityData = getCityData(rawData)
   console.log(cityData)
 

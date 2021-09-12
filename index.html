@@ -20,9 +20,7 @@
       <div class='article-credits'>
         <p class='article-author'>By me!</p>
         <p class='article-date'>🕖 20 November 2017</p>
-        <p class='article-section'>
-          <a href="http://www.bbc.co.uk/news/world/asia/india">India</a>
-        </p>
+        <p class='article-section'><a href="http://www.bbc.co.uk/news/world/asia/india">India</a></p>
       </div>
     </div>
   </section>
@@ -55,7 +53,6 @@
 
   <!-- City Search Box -->
   <section class="city-menu" id='city-menu'></section>
-  <br><br>
 
   <!-- Particles for PM2.5 Viz -->
   <section class="particles-wrapper">
@@ -76,7 +73,7 @@
       class='ie-content summary-graph-img' role="img" 
       aria-label="graph showing number of cigarettes per Indian city and particulate matter in the air"
     >
-      <img src="./summary-graph.png">
+      <img src="./img/summary-graph.png">
    </div>
   </section>
 
@@ -107,23 +104,16 @@
     </p>
   </section>
 
-  <!-- If no JavaScript is running -->
+  <!-- If no JavaScript -->
   <noscript>
     <p>Please enable JavaScript to view the full content.</p>
     <div 
       class='ie-content summary-graph-img' role="img" 
       aria-label="graph showing number of cigarettes per Indian city and particulate matter in the air"
     >
-      <img src="./summary-graph.png">
+      <img src="./img/summary-graph.png">
    </div>
   </noscript>
-
-  <!--[if IE]>
-      <div class="warning"><p>For the best experience please open using Chrome, Firefox or Safari</p></div>
-  <![endif]-->
-
-  <script type="module" src="https://d3js.org/d3.v7.min.js"></script>
-  <script type="module" src="./main.js"></script>
 
   <!-- Polyfills for CSS vars for IE11 -->
   <script src="https://unpkg.com/css-vars-ponyfill@2/dist/css-vars-ponyfill.min.js"></script>
@@ -133,6 +123,8 @@
           onlyLegacy: false, // Treat all browsers as legacy
       });
   </script>
+    <script type="module" src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="module" src="./main.js"></script>
 
 </body>
 </html>
