@@ -26,7 +26,12 @@ const cityList = cityMenu.append('ul')
 
 const numParticlesDisplay = d3.select('#num-particles')
 // Add the small tag with PM2.5 just under num particles displayed
-d3.select('#num-particles-container').append('small').html('PM2.5')
+const numParticlesContainer = d3.select('#num-particles-container')
+  .style('width', "80px")
+  .style('height', "80px")
+  .style('padding', '15px')
+numParticlesContainer.append('small').html('PM2.5')
+
 const sigsContainer = d3.select("#cigs-container")
 
 // For the summary graph
@@ -36,7 +41,7 @@ const summaryGraphContainer = d3.select('#summary-graph-container')
   .attr('height', 1250)
 
 // Remove content for IE
-d3.select('.ie-content').remove()
+d3.selectAll('.ie-content').remove()
 
 // Initialise data 
 let rawData;
