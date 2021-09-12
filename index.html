@@ -14,35 +14,26 @@
     This text will display on all the pages, regardless of whether it is IE or 
     other browsers
   </p>
-  <h2>Cigarettes</h2>
-  <p>Testing out a cigarette image</p>
-  <br><br><br>
-
-  <!-- Testing a searchbox -->
-  <div class="cityMenu">
-    <input type="text" id="cityInput" placeholder="search for a city">
-    <ul id="cityList"></ul>
-  </div>
-
-
-  <!-- Dropdown to select city -->
-  <h3 class='aqi-value'></h3>
-  <!-- <label for="cities-select">Choose your city:</label>
-  <select name="cities-select" id="cities-select"></select> -->
   <br><br>
-  
-  <div class="particles-wrapper">
-    <canvas id='canvas' width='0' height='0'></canvas>
-    <div id='num-particles'>
-      <h3 >455</h3>
-      <small>PM2.5</small>
+
+
+  <!-- City Search Box -->
+  <section class="city-menu">
+    <input type="text" class="city-input" id="city-input" placeholder="search for a city">
+    <ul class="city-list" id="city-list"></ul>
+  </section>
+  <br><br>
+
+  <!-- Particles for PM2.5 Viz -->
+  <section class="particles-wrapper">
+    <canvas class='canvas-particles' id='canvas-particles' width='0' height='0'></canvas>
+    <div class='num-particles-container' id='num-particles-container'>
+      <h3 class='num-particles' id='num-particles'></h3>
     </div>
-  </div>
+  </section>
 
-
-
-  <div id='cigarette'></div>
-  <div id="graph-wrapper"></div>
+  <!-- Cigs Viz -->
+  <section id='cigs-container'></section>
 
   <noscript>
     <p>This alternative thing will display if no JavaScript</p>

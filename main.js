@@ -1,15 +1,16 @@
 
 import { getCityData } from "./modules/dataPrep.js"
 import { canvas, initParticles, animateParticles } from "./modules/aqiParticles.js"
-import { cigsViz } from "./modules/cigsViz.js"
-//import { selectMenu } from "./modules/selectMenu.js"
+import { cigsViz, sigsDimsSmall, sigsDimsLarge } from "./modules/cigsViz.js"
 
 // DOM selectors 
-const sigsContainer = d3.select("#cigarette")
-const cityInput = d3.select('#cityInput')
-const cityList = d3.select('#cityList')
+const cityInput = d3.select('#city-input')
+const cityList = d3.select('#city-list')
 cityList.style('display', 'none') // Need for Edge, Chrome on Windows 
-const aqiValue = d3.select('.aqi-value')
+const numParticlesDisplay = d3.select('#num-particles')
+// Add the small tag with PM2.5 just under num particles displayed
+d3.select('#num-particles-container').append('small').html('PM2.5')
+const sigsContainer = d3.select("#cigs-container")
 
 // Initialise data 
 let rawData;
@@ -18,20 +19,12 @@ let selectedCity = ''
 let numParticles = 0
 let numCigs
 
+// Initalise colour scale for the particles 
+const pmColourScale = d3.scaleSequential(d3.interpolateBrBG)
+
 // Dimensions for the cigs in graph - need for responsiveness
 let sigsDims = {}
-const sigsDimsSmall = {
-  width: 30,
-  height: 70,
-  rotate: 40,
-  distance: -10
-}
-const sigsDimsLarge = {
-  width: 30,
-  height: 80,
-  rotate: 60,
-  distance: 0
-}
+
 // Set canvas size based on current display dims
 if (window.innerWidth < 600) {
   sigsDims = { ...sigsDimsSmall }
@@ -39,18 +32,8 @@ if (window.innerWidth < 600) {
   sigsDims = { ...sigsDimsLarge }
 }
 
-
-// When a city is selected, update the selectedCity and nums for aqi and 
-// and draw the graph with updated values
-// const citiesDropdown = document.getElementById('cities-select')
-// citiesDropdown.addEventListener('change', e => {
-//   selectedCity = e.target.value;
-//   numParticles = cityData.filter(city => city.name === selectedCity)[0].aqi
-//   const aqiValue = document.querySelector('.aqi-value')
-//   aqiValue.innerHTML = numParticles
-//   graph(selectedCity)
-// })
-
+// Dynamically fill the cities menu with cities and add event
+// to listen for searches and pass city data to graph to update
 const getCitiesMenu = (cityData, cityInput) => {
   const cityListLi = cityList.selectAll('li')
     .data(cityData)
@@ -63,7 +46,6 @@ const getCitiesMenu = (cityData, cityInput) => {
       cityInput.property('value', selectedCity) // Search field input updates to city
       cityListLi.style('display', 'none') // Hide list of cities again
       numParticles = cityData.filter(city => city.name === selectedCity)[0].aqi // Update num particles for particle graph
-      aqiValue.html(numParticles)
       graph(selectedCity) // Run the graph with the selected city
     })
 
@@ -96,20 +78,23 @@ async function graph(selectedCity) {
   cityData = getCityData(rawData)
 
   // 2. Initialise the menu of cities (list) behind the search functionality
-  // const selectMenuContainer = d3.select('#cities-select')
-  // selectMenuContainer.call(selectMenu, cityData)
   getCitiesMenu(cityData, cityInput)
 
-  // 3. Call the cigarettes viz
-  sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
+  // 3. Initialise the particles for the PM2.5 particle graph
+  // change colour based on num particles 
+  pmColourScale.domain(d3.extent(cityData, d => d.aqi).reverse())
+  initParticles(numParticles, pmColourScale(numParticles)) 
+  numParticlesDisplay.html(numParticles) // Upadte displayed particles
 
-  // 4. Initialise the particles for the PM2.5 particle graph
-  initParticles(numParticles)
+  // 4. Call the cigarettes viz
+  sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
 }
 
 // Run the graph + animate the particles
 graph(selectedCity)
+// Toggle the animation on particles 
 animateParticles()
+
 
 // On resize, change the canvas width and cigarette dims to fit to smaller screens
 window.addEventListener('resize', e => {
@@ -123,4 +108,3 @@ window.addEventListener('resize', e => {
     sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
   }
 })
-

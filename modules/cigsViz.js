@@ -17,6 +17,7 @@ const cigsViz = (container, selectedCity, cityData, numCigs, sigsDims) => {
       .attr('src', imagePath)
       //.style('position', 'absolute')
       .style('margin-left', (d, i) => `${sigsDims.distance}px`)
+      .style('margin-top', '20px')
       //.style('transform', (d, i) => `rotate(${20*Math.random()-10}deg)`)
       .style('transform', (d, i) => `rotate(${sigsDims.rotate}deg)`)
       .style('height', `${sigsDims.height}px`)
@@ -24,4 +25,18 @@ const cigsViz = (container, selectedCity, cityData, numCigs, sigsDims) => {
       .style('opacity', (d, i) => i< numCigs ? 1 : 0.1)
 }
 
-export { cigsViz }
+// Dimensions for the cigs in graph - need for responsiveness
+const sigsDimsSmall = {
+  width: 30,
+  height: 70,
+  rotate: 40,
+  distance: -10
+}
+const sigsDimsLarge = {
+  width: 30,
+  height: 80,
+  rotate: 60,
+  distance: 0
+}
+
+export { cigsViz, sigsDimsSmall, sigsDimsLarge }

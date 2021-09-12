@@ -1,128 +1,119 @@
+:root {
+  --darkColour: #222;
+  --lightColour: #fffcf2;
+  --accentColour: #b3c9dd;
+}
+
+/*********************** General Styles ***********************/
 body, * {
   font-family: Arial,Helvetica,sans-serif;
-  color: #222;
-  color: #fffcf2;
+  color: var(--darkColour);
+  color: var(--lightColour);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
 }
 
 body {
   text-align: center;
   margin: auto;
+  background-color: var(--lightColour);
+  background-color:var(--darkColour);
 }
 
 h1 {
   padding: 30px;
 }
 
-body {
-  background-color: #ffffff;
-  background-color: #1f1c1b;
-}
 
-img {
-  width: 60%;
-}
-
-#canvas {
-  background: #b3c9dd;
-  border-radius: 10%;
-  /* border: 3px solid rgb(90, 45, 45); */
-  box-shadow: 0px 0px 20px #b3c9dd;
-}
-
-#cigarette {
-  text-align: center;
+/********************** City Search Box **********************/
+.city-menu {
   position: relative;
+  margin: auto;
+  width: 300px; 
 }
 
-select {
-  color: black;
+.city-input {
+  background-color: var(--lightColour);
+  background-image: url('./search.svg'); /* Add a search icon to input */
+  background-position: 95% 7px; /* Position the search icon */
+  background-repeat: no-repeat; 
+  background-size: 30px;
+  border: 4px solid var(--lightColour); 
+  color: var(--darkColour);
+  font-size: 16px; 
+  margin-bottom: 2px; 
+  padding: 15px 12px; 
+  outline: none;
+  width: 100%;
 }
 
+.city-input:active, .city-input:focus {
+  border: 3px solid var(--accentColour); 
+}
+
+.city-list {
+  list-style-type: none;
+  margin: 0;
+  max-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0;
+  position: absolute;
+  width: 100%; 
+  z-index: 10;
+}
+
+.city-list li {
+  background-color: var(--lightColour); 
+  border: 1px solid #ddd; 
+  color: var(--darkColour); 
+  cursor: pointer;
+  font-size: 16px; 
+  margin-top: -1px; 
+  padding: 12px; 
+}
+
+.city-list li:hover:not(.header) {
+  background-color: #eee; 
+}
+
+
+/******************* Particles for PM2.5 Viz *******************/
 .particles-wrapper {
   position: relative;
   margin: auto;
   width: 100%;
 }
 
-#num-particles {
-  position: absolute;
-  top: 60px;
-  left: calc(50% - 35px);
-  background-color: #b3c9dd;
+.canvas-particles {
+  /* background: var(--accentColour); */
+  border-radius: 25%;
+  /* border: 3px solid rgb(90, 45, 45); */
+  box-shadow: 0px 0px 20px var(--lightColour);
+}
+
+.num-particles-container {
+  background-color: var(--accentColour);
+  background-color: var(--lightColour);
+  border: 1px dotted var(--darkColour);
   border-radius: 100%;
-  padding: 12px;
-  border: 2px dashed rgb(226, 220, 209);
-  width: 70px;
-  height: 70px;
-}
-
-#num-particles h3 {
-  margin: auto;
-  color: #111;
-  font-size: 24px;
-}
-#num-particles small {
-  margin: auto;
-  color: #444;
-  font-size: 10px !important;
-}
-
-
-/*********** For the search menu ************/
-
-.cityMenu {
-  width: 300px; 
-  margin: auto;
-  position: relative;
-}
-
-
-#cityInput {
-  background-image: url('./search.svg'); /* Add a search icon to input */
-  background-position: 95% 7px; /* Position the search icon */
-  background-repeat: no-repeat; /* Do not repeat the icon image */
-  background-size: 30px;
-  width: 100%;
-  font-size: 16px; 
-  padding: 15px 12px; 
-  border: 4px solid #f6f6f6; 
-  margin-bottom: 2px; 
-  color: black;
-  background-color: #f6f6f6;
-  outline: none;
-}
-
-#cityInput:active, #cityInput:focus {
-  border: 3px solid #b3c9dd; 
-}
-
-
-#cityList {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  padding: 15px;
   position: absolute;
-  max-height: 200px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  width: 100%; 
-  z-index: 100;
+  top: 65px;
+  left: calc(50% - 35px);
+  height: 80px;
+  width: 80px;
 }
 
-#cityList li {
-  border: 1px solid #ddd; 
-  margin-top: -1px; 
-  background-color: #f6f6f6; 
-  padding: 12px; 
-  font-size: 16px; 
-  color: black; 
-  cursor: pointer;
+.num-particles-container h3 {
+  color: var(--darkColour);
+  font-size: 28px;
+  margin: auto;
+}
+.num-particles-container small {
+  color: #444;
+  font-size: 10px;
+  margin: auto;
 }
 
-#cityList li:hover:not(.header) {
-  background-color: #eee; /* Add a hover effect to all links, except for headers */
-}

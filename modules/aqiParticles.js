@@ -1,4 +1,4 @@
-const canvas = document.getElementById('canvas')
+const canvas = document.getElementById('canvas-particles')
 // Set canvas size based on current display dims
 if (window.innerWidth < 600) {
   canvas.width = 300
@@ -6,7 +6,7 @@ if (window.innerWidth < 600) {
   canvas.width = 400
 }
 canvas.height = 200
-const ctx = canvas.getContext('2d');
+let ctx = canvas.getContext('2d');
 
 // // Create circular clipping region
 // // Note: Currently not using; initially had the particles in a circle and change later
@@ -55,16 +55,15 @@ class Particle {
 
 // Create particles array 
 let particlesArray = []
-function initParticles(numParticles) {
+function initParticles(numParticles, colour) {
   particlesArray = [] // Clear array as we update it dynamically based on num particles
   for (let i = 0; i < numParticles; i++) {
     const size = (Math.random() * 3) + 2
     // Initialise the particles at random (x, y) positions
     const x = Math.random() * ((canvas.width - size*2) - (size*2)) + size*2
     const y = Math.random() * ((canvas.height - size*2) - (size*2)) + size*2
-    const dx = Math.random()*0.5;
-    const dy = Math.random()*0.5;
-    const colour = '#cf6c07' //'#db7c26'
+    const dx = Math.random()*0.3;
+    const dy = Math.random()*0.3;
 
     particlesArray.push(new Particle(x, y, dx, dy, size, colour))
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -76,11 +75,11 @@ function initParticles(numParticles) {
 
 // Animate the particles 
 function animateParticles() {
-  requestAnimationFrame(animateParticles)
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  for (const particle of particlesArray) {
-    particle.update()
-  }
+    requestAnimationFrame(animateParticles)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    for (const particle of particlesArray) {
+      particle.update()
+    }
 }
 
 
