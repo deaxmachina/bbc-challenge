@@ -2,7 +2,7 @@
 import { getCityData } from "./modules/dataPrep.js"
 import { canvas, initParticles, animateParticles } from "./modules/aqiParticles.js"
 import { cigsViz, sigsDimsSmall, sigsDimsLarge } from "./modules/cigsViz.js"
-
+import { summaryGraph } from "./modules/summaryGraph.js"
 
 /// DOM manipulation and selectors ///
 
@@ -28,6 +28,12 @@ const numParticlesDisplay = d3.select('#num-particles')
 // Add the small tag with PM2.5 just under num particles displayed
 d3.select('#num-particles-container').append('small').html('PM2.5')
 const sigsContainer = d3.select("#cigs-container")
+
+// For the summary graph
+const summaryGraphContainer = d3.select('#summary-graph-container')
+  .append('svg')
+  .attr('width', 350)
+  .attr('height', 1250)
 
 // Remove content for IE
 d3.select('.ie-content').remove()
@@ -96,6 +102,7 @@ async function graph(selectedCity) {
   // 1. Load in the raw data and extract useful data in array format
   rawData = await d3.json('english.json')
   cityData = getCityData(rawData)
+  console.log(cityData)
 
   // 2. Initialise the menu of cities (list) behind the search functionality
   getCitiesMenu(cityData, cityInput)
@@ -108,6 +115,9 @@ async function graph(selectedCity) {
 
   // 4. Call the cigarettes viz
   sigsContainer.call(cigsViz, selectedCity, cityData, numCigs, sigsDims)
+
+  // 5. Call the summary graph
+  summaryGraphContainer.call(summaryGraph, cityData.sort((a, b) => b.cigg - a.cigg))
 }
 
 // Run the graph + animate the particles
