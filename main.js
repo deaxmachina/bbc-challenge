@@ -17,16 +17,17 @@ const cityList = cityMenu.append('ul')
   .attr('class', 'city-list')
   .attr('id', 'city-list')
   .style('display', 'none') // Need for Edge, Chrome on Windows 
-
 // const cityInput = d3.select('#city-input')
 // const cityList = d3.select('#city-list')
 // cityList.style('display', 'none') // Need for Edge, Chrome on Windows 
-
 
 const numParticlesDisplay = d3.select('#num-particles')
 // Add the small tag with PM2.5 just under num particles displayed
 d3.select('#num-particles-container').append('small').html('PM2.5')
 const sigsContainer = d3.select("#cigs-container")
+
+// Remove content for IE
+d3.select('#ie-testing').remove()
 
 // Initialise data 
 let rawData;
