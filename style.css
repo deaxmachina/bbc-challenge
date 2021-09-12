@@ -19,12 +19,11 @@ body {
   margin: auto;
   background-color: var(--lightColour);
   background-color:var(--darkColour);
+  width: 100%;
 }
 
-h1 {
-  padding: 30px;
-}
 
+/*********************** Hero Section ***********************/
 .hero-section {
   position: relative;
 }
@@ -33,16 +32,45 @@ h1 {
   width: 100%;
 }
 
-.article-title {
+.article-title-credits-container {
+  background-color: var(--darkColour);
+  padding: 40px 20px 40px 20px;
   position: absolute;
   bottom: 0px;
-  padding: 60px;
   left: 15%;
-  text-align: center;
+  transition: all 0.3s ease;
   width: 70%;
-  background-color: var(--darkColour);
-  font-size: 2rem;
+}
+
+.article-title {
+  font-size: 2.2rem;
   font-weight: 400;
+  padding: 10px;
+  text-align: left;
+}
+
+.article-credits {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.article-credits p {
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+.article-credits .article-author {
+  margin-left: 0;
+}
+
+.article-section {
+  border-left: 1px solid var(--accentColour);
+  padding-left: 6px;
+}
+
+.article-section a {
+  color: var(--accentColour);
 }
 
 
@@ -139,28 +167,38 @@ h1 {
 
 
 /******************* Media Queries *******************/
-
 @media (max-width: 1200px) {
-  .article-title {
+  .article-title-credits-container {
     left: 10%;
     width: 80%;
+    padding: 20px 20px 30px;
   }
 }
 
 @media (max-width: 1100px) {
-  .article-title {
+  .article-title-credits-container {
     left: 5%;
     width: 90%;
+    padding: 20px 20px 30px;
+  }
+  .article-title {
     font-size: 1.8rem;
-    font-weight: 400;
-    padding: 30px;
   }
 }
 
-@media (max-width: 750px) {
-  .article-title {
+@media (max-width: 950px) {
+  .article-title-credits-container {
     position: relative;
-    font-size: 1.5rem;
-    font-weight: 400;
+    left: 0;
+    width: 100%;
+    margin: auto;
+  }
+  .article-title {
+    padding: 0px;
+    font-size: 1.6rem;
+  }
+  .article-credits {
+    padding: 0;
+    margin-top: 20px;
   }
 }
