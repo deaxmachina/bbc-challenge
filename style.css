@@ -103,12 +103,14 @@ section {
   margin-bottom: 20px;
 }
 
-/*Summary graph*/
+
+/********************** Summary graph **********************/
 .summary-graph-img {
   width: 70%;
   margin: auto;
   text-align: center;
 }
+
 
 /********************** City Search Box **********************/
 .city-menu {
@@ -208,6 +210,19 @@ section {
   margin: auto;
 }
 
+/********************** Methodology **********************/
+.methodology-section {
+  background-color: var(--lightColour);
+  padding-bottom: 10px;
+}
+.methodology-section-title {
+  margin-bottom: 10px;
+  color: var(--darkColour);
+}
+.methodology-para {
+  font-size: 0.8rem;
+  color: #333;
+}
 
 /******************* Media Queries *******************/
 @media (max-width: 1200px) {
