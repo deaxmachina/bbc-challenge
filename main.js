@@ -3,10 +3,26 @@ import { getCityData } from "./modules/dataPrep.js"
 import { canvas, initParticles, animateParticles } from "./modules/aqiParticles.js"
 import { cigsViz, sigsDimsSmall, sigsDimsLarge } from "./modules/cigsViz.js"
 
-// DOM selectors 
-const cityInput = d3.select('#city-input')
-const cityList = d3.select('#city-list')
-cityList.style('display', 'none') // Need for Edge, Chrome on Windows 
+
+/// DOM manipulation and selectors ///
+
+// Programmatically create the city menu input and list as we don't want to have as HTML 
+const cityMenu = d3.select("#city-menu")
+const cityInput = cityMenu.append('input')
+  .attr('type', 'text')
+  .attr('class', 'city-input')
+  .attr('id', 'city-input')
+  .attr('placeholder', "search for a city")
+const cityList = cityMenu.append('ul')
+  .attr('class', 'city-list')
+  .attr('id', 'city-list')
+  .style('display', 'none') // Need for Edge, Chrome on Windows 
+
+// const cityInput = d3.select('#city-input')
+// const cityList = d3.select('#city-list')
+// cityList.style('display', 'none') // Need for Edge, Chrome on Windows 
+
+
 const numParticlesDisplay = d3.select('#num-particles')
 // Add the small tag with PM2.5 just under num particles displayed
 d3.select('#num-particles-container').append('small').html('PM2.5')
