@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style.css">
-  <title>Document</title>
+  <title>Delhi smog: How many cigarettes did you smoke this week?</title>
 </head>
 <body>
 
@@ -53,12 +53,8 @@
     </h4>
   </section>
 
-
   <!-- City Search Box -->
-  <section class="city-menu" id='city-menu'>
-    <!-- <input type="text" class="city-input" id="city-input" placeholder="search for a city">
-    <ul class="city-list" id="city-list"></ul> -->
-  </section>
+  <section class="city-menu" id='city-menu'></section>
   <br><br>
 
   <!-- Particles for PM2.5 Viz -->
@@ -76,23 +72,33 @@
   <section id='summary-graph-container'>
     <h2>All Cities</h2>
     <p>cigarettes and particulate matter (PM2.5)</p>
-    <div class='ie-content summary-graph-img'><img src="./summary-graph.png"></div>
+    <div 
+      class='ie-content summary-graph-img' role="img" 
+      aria-label="graph showing number of cigarettes per Indian city and particulate matter in the air"
+    >
+      <img src="./summary-graph.png">
+   </div>
   </section>
 
+  <!-- If no JavaScript is running -->
   <noscript>
-    <h1>I am not a script</h1>
     <p>Please enable JavaScript to view the full content.</p>
-    <div class='ie-content'><img src="./ie-graph-summary.png"></div>
+    <div 
+      class='ie-content summary-graph-img' role="img" 
+      aria-label="graph showing number of cigarettes per Indian city and particulate matter in the air"
+    >
+      <img src="./summary-graph.png">
+   </div>
   </noscript>
 
   <!--[if IE]>
       <div class="warning"><p>For the best experience please open using Chrome, Firefox or Safari</p></div>
   <![endif]-->
 
-  
   <script type="module" src="https://d3js.org/d3.v7.min.js"></script>
   <script type="module" src="./main.js"></script>
 
+  <!-- Polyfills for CSS vars for IE11 -->
   <script src="https://unpkg.com/css-vars-ponyfill@2/dist/css-vars-ponyfill.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/js-beautify@1/js/lib/beautify-css.min.js"></script> 
   <script>
@@ -100,15 +106,6 @@
           onlyLegacy: false, // Treat all browsers as legacy
       });
   </script>
-
-  <!-- Browsers with ES module support load this file. -->
-  <!-- note: you don't need to include the modules as well as scripts  -->
-  <!-- <script type="module" src="./test.js"></script> -->
-  
-  
-
-  <!-- Older browsers load this file (and module-supporting -->
-  <!-- Note that if you use this your noscript tags will no longer work -->
 
 </body>
 </html>
