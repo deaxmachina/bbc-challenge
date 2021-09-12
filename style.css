@@ -7,19 +7,17 @@
 
 /*********************** General Styles ***********************/
 body, * {
-  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-  color: var(--darkColour);
+  box-sizing: border-box;
   color: var(--lightColour);
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  text-align: center;
-  margin: auto;
-  background-color: var(--lightColour);
   background-color:var(--darkColour);
+  margin: auto;
+  text-align: center;
   width: 100%;
 }
 
@@ -30,8 +28,8 @@ section {
 
 /*********************** Hero Section ***********************/
 .hero-section {
-  position: relative;
   margin-bottom: 0;
+  position: relative;
 }
 
 .hero-img {
@@ -82,21 +80,21 @@ section {
 
 /********************** Article Section **********************/
 .article-content-section {
-  width: 70%;
-  padding: 30px;
-  margin: auto;
-  text-align: left;
   color: var(--lightColour);
+  margin: auto;
   line-height: 1.3;
+  padding: 30px;
+  text-align: left;
   transition: all 0.3s ease;
+  width: 70%;
 }
 
 .article-summary {
-  margin: 20px 0;
-  padding: 20px 0;
-  font-style: italic;
   border-bottom: 3px solid rgb(85, 78, 79);
   border-top: 3px solid rgb(85, 78, 79);
+  font-style: italic;
+  margin: 20px 0;
+  padding: 20px 0;
 }
 
 .article-content-section p {
@@ -106,26 +104,26 @@ section {
 
 /********************** Summary graph **********************/
 .summary-graph-img {
-  width: 70%;
   margin: auto;
   text-align: center;
+  width: 70%;
 }
 
 
 /********************** City Search Box **********************/
 .city-menu {
-  position: relative;
   margin: auto;
   margin-bottom: 40px;
+  position: relative;
   width: 300px; 
 }
 
 .city-menu-instructions {
   font-size: 0.8rem;
-  margin-bottom: 10px;
-  text-align: left;
-  opacity: 0.7;
   line-height: 1.2;
+  margin-bottom: 10px;
+  opacity: 0.7;
+  text-align: left;
 }
 
 .city-input {
@@ -136,7 +134,7 @@ section {
   background-size: 30px;
   border: 4px solid var(--lightColour); 
   color: var(--darkColour);
-  font-size: 16px; 
+  font-size: 1rem; 
   margin-bottom: 2px; 
   padding: 15px 12px; 
   outline: none;
@@ -164,7 +162,7 @@ section {
   border: 1px solid #ddd; 
   color: var(--darkColour); 
   cursor: pointer;
-  font-size: 16px; 
+  font-size: 1rem; 
   margin-top: -1px; 
   padding: 12px; 
 }
@@ -176,20 +174,17 @@ section {
 
 /******************* Particles for PM2.5 Viz *******************/
 .particles-wrapper {
-  position: relative;
   margin: auto;
+  position: relative;
   width: 100%;
 }
 
 .canvas-particles {
-  /* background: var(--accentColour); */
   border-radius: 25%;
-  /* border: 3px solid rgb(90, 45, 45); */
   box-shadow: 0px 0px 20px var(--lightColour);
 }
 
 .num-particles-container {
-  background-color: var(--accentColour);
   background-color: var(--lightColour);
   border: 1px dotted var(--darkColour);
   border-radius: 100%;
@@ -202,12 +197,12 @@ section {
 }
 .num-particles-container h3 {
   color: var(--darkColour);
-  font-size: 28px;
+  font-size: 1.8rem;
   margin: auto;
 }
 .num-particles-container small {
   color: #444;
-  font-size: 10px;
+  font-size: 0.6rem;
   margin: auto;
 }
 
@@ -224,24 +219,26 @@ section {
   padding-bottom: 10px;
 }
 .methodology-section-title {
-  margin-bottom: 10px;
   color: var(--darkColour);
+  margin-bottom: 10px;
 }
 .methodology-para {
+  color: var(--darkColour);
   font-size: 0.8rem;
-  color: #333;
+  opacity: 0.8;
+  font-weight: 400;
 }
 
 /******************* Media Queries *******************/
 @media (max-width: 1200px) {
   .article-title-credits-container {
     left: 10%;
-    width: 80%;
     padding: 20px 20px 30px;
+    width: 80%;
   }
   .article-content-section {
-    width: 80%;
     padding: 30px;
+    width: 80%;
   }
 }
 
@@ -249,7 +246,6 @@ section {
   .article-title-credits-container {
     left: 5%;
     width: 90%;
-    padding: 20px 20px 30px;
   }
   .article-title {
     font-size: 1.8rem;
@@ -261,18 +257,18 @@ section {
 
 @media (max-width: 950px) {
   .article-title-credits-container {
-    position: relative;
     left: 0;
-    width: 100%;
     margin: auto;
+    position: relative; 
+    width: 100%;
   }
   .article-title {
-    padding: 0px;
     font-size: 1.6rem;
+    padding: 0px;
   }
   .article-credits {
-    padding: 0;
     margin-top: 20px;
+    padding: 0;
   }
   .article-content-section {
     width: 100%;
@@ -281,7 +277,7 @@ section {
 
 @media (max-width: 550px) {
   .article-content-section {
-    width: 100%;
     padding-top: 10px;
+    width: 100%;
   }
 }
