@@ -1,4 +1,3 @@
-
 // Extract all data for cities in a list of objects - one for each city
 const getCityData = (rawData) => {
   const cityData = []

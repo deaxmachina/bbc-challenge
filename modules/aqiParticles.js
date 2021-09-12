@@ -8,12 +8,11 @@ if (window.innerWidth < 600) {
 canvas.height = 200
 let ctx = canvas.getContext('2d');
 
-// // Create circular clipping region
+// // Create circular clipping region - uncomment to see
 // // Note: Currently not using; initially had the particles in a circle and change later
 // ctx.beginPath();
 // ctx.arc(canvas.width/2, canvas.height/2, canvas.height/2, 0, Math.PI * 2);
 // ctx.clip();
-
 
 // Particle class - for the particulate matter
 class Particle {
@@ -29,8 +28,6 @@ class Particle {
   draw() {
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.size, 0, Math.PI*2, false)
-    // Comment arc above and uncomment below to try with little rects instead of circles
-    // ctx.fillRect(this.x, this.y, this.size, this.size)
     ctx.fillStyle = this.colour
     ctx.fill()
     ctx.globalAlpha = 0.8;
@@ -59,7 +56,7 @@ function initParticles(numParticles, colour) {
   particlesArray = [] // Clear array as we update it dynamically based on num particles
   for (let i = 0; i < numParticles; i++) {
     const size = (Math.random() * 3) + 2
-    // Initialise the particles at random (x, y) positions
+    // Initialise the particles at random (x, y) positions and velocities
     const x = Math.random() * ((canvas.width - size*2) - (size*2)) + size*2
     const y = Math.random() * ((canvas.height - size*2) - (size*2)) + size*2
     const dx = Math.random()*0.3;

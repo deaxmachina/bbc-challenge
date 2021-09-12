@@ -6,14 +6,11 @@ const yOffsetFromTop = 100
 const sigsMultiplier = 18
 const cigsFill = '#fca311'
 const lightColour = '#e5e5e5'
-const pmCirclesFill = lightColour
-const cityNameFill = pmCirclesFill
 const darkColour = '#222'
 
 // To add a legend for the circles on the graph 
 // Code adapted from here: https://www.d3-graph-gallery.com/graph/bubble_legend.html
 const pmCirclesLegend = (container, scale) => {
-  //const valuesToShow = [50, 150, 350]
   const valuesToShow = [350, 150, 50]
   const xCircle = 50
   const xLabel = 60
@@ -83,7 +80,7 @@ const summaryGraph = (container, data) => {
   // Circles for the aqi value i.e. PM2.5 
   const pmGraph = cityG.append('circle')
     .attr('r', d => pmCircleRadiusScale(d.aqi))
-    .attr('fill', pmCirclesFill)
+    .attr('fill', lightColour)
     .attr('cx', d => d.cigg*sigsMultiplier - pmCircleRadiusScale(d.aqi) - 3)
     .attr('cy', barDims.height/2)
     .attr('stroke', darkColour)
@@ -95,7 +92,7 @@ const summaryGraph = (container, data) => {
     .attr('x', d => d.cigg*sigsMultiplier + 5)
     .attr('y', barDims.height/2)
     .attr('dy', '0.35em')
-    .style('fill', cityNameFill)
+    .style('fill', lightColour)
 
   // Label the num of cigs on the bars themselves
   const cityLabelCigs = cityG.append('text')
