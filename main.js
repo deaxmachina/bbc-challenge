@@ -5,8 +5,8 @@ import { cigsViz, sigsDimsSmall, sigsDimsLarge } from "./modules/cigsViz.js"
 import { summaryGraph } from "./modules/summaryGraph.js"
 
 /// DOM manipulation and selectors ///
-
-// Programmatically create the city menu input and list as we don't want to have as HTML 
+// Programmatically create element that we don't want to leave in HTML as html will display mvp
+// 1. City Search Box
 const cityMenu = d3.select("#city-menu")
 const cityMenuInstructions = cityMenu.append('p')
   .attr('class', 'city-menu-instructions')
@@ -20,35 +20,32 @@ const cityList = cityMenu.append('ul')
   .attr('class', 'city-list')
   .attr('id', 'city-list')
   .style('display', 'none') // Need for Edge, Chrome on Windows 
-// const cityInput = d3.select('#city-input')
-// const cityList = d3.select('#city-list')
-// cityList.style('display', 'none') // Need for Edge, Chrome on Windows 
 
+// 2. Particles for PM2.5 Viz
 const numParticlesDisplay = d3.select('#num-particles')
-// Add the small tag with PM2.5 just under num particles displayed
 const numParticlesContainer = d3.select('#num-particles-container')
   .style('width', "80px")
   .style('height', "80px")
   .style('padding', '15px')
-numParticlesContainer.append('small').html('PM2.5')
+numParticlesContainer.append('small').html('PM2.5') // the 'PM2.5' just under num particles displayed
 
+// 3. Cigs Viz
 const sigsContainer = d3.select("#cigs-container")
 
-// For the summary graph
+// 3. Summary Graph for all cities
 const summaryGraphContainer = d3.select('#summary-graph-container')
   .append('svg')
-  .attr('width', 320)
-  .attr('height', 1250)
+  .attr('width', 320).attr('height', 1250)
 
-// Remove content for IE
+// Finally, remove content for IE/no JS which is in the html initially
 d3.selectAll('.ie-content').remove()
 
-// Initialise data 
-let rawData;
-let cityData; 
-let selectedCity = ''
-let numParticles = 0
-let numCigs
+// Initialise data and data variables
+let rawData // all the raw data 
+let cityData // just data for cities
+let selectedCity = '' // selected city to be passed onto graphs
+let numParticles = 0 // num PM2.5 particles for selected city
+let numCigs // num cigs for selected city
 
 // Initalise colour scale for the particles 
 const pmColourScale = d3.scaleSequential(d3.interpolateBrBG)
@@ -63,8 +60,7 @@ if (window.innerWidth < 600) {
   sigsDims = { ...sigsDimsLarge }
 }
 
-// Dynamically fill the cities menu with cities and add event
-// to listen for searches and pass city data to graph to update
+// Dynamically fill the cities menu with cities and add event searches and pass city data to graph
 const getCitiesMenu = (cityData, cityInput) => {
   const cityListLi = cityList.selectAll('li')
     .data(cityData)
@@ -102,12 +98,11 @@ const getCitiesMenu = (cityData, cityInput) => {
   })
 }
 
-
+/// Main graph function - load data and pass it into menu, graphs ///
 async function graph(selectedCity) {
   // 1. Load in the raw data and extract useful data in array format
   rawData = await d3.json('./data/english.json')
   cityData = getCityData(rawData)
-  console.log(cityData)
 
   // 2. Initialise the menu of cities (list) behind the search functionality
   getCitiesMenu(cityData, cityInput)
@@ -127,7 +122,6 @@ async function graph(selectedCity) {
 
 // Run the graph + animate the particles
 graph(selectedCity)
-// Toggle the animation on particles 
 animateParticles()
 
 
