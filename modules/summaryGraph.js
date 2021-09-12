@@ -48,7 +48,7 @@ const pmCirclesLegend = (container, scale) => {
     .attr('x', (d, i) => xLabel + i*50 +20)
       .attr('y', d => yCircle - scale(d))
       .text(d => `${d} PM2.5`)
-      .style("font-size", 8)
+      .style("font-size", '8px')
       .attr('alignment-baseline', 'middle')
       .style('fill', lightColour)
 }
