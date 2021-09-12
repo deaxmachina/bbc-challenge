@@ -4,6 +4,7 @@ Goal: “They need you to build an interactive project where users will select a
 
 ## Usage 
 The build is very simple, it can be opened with live-server or similar, or simply with the html’s URL. I chose not to use webpack or similar, and modules are not installed with node. In terms of external modules, I only used D3 and an IE CSS polyfill. 
+It should be responsive on devices as small as an iPhone 5. 
 
 ## Concept 
 I followed the style of other BBC visual articles. For the visualisations, I tried to make something intuitive, where the information is displayed both as text and as an interactive. I chose to create a search box for the cities, where a selection of a city triggers two graphs to update – one which represents PM2.5 particles (there are as many particles as the actual number) ‘floating in the air’, and one as cigarettes for the number of cigarettes ‘smoked’. 
