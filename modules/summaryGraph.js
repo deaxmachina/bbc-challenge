@@ -3,7 +3,7 @@ const barDims = {
   margin: 5,
 }
 const yOffsetFromTop = 100
-const sigsMultiplier = 20
+const sigsMultiplier = 18
 const cigsFill = '#fca311'
 const lightColour = '#e5e5e5'
 const pmCirclesFill = lightColour
@@ -92,7 +92,7 @@ const summaryGraph = (container, data) => {
   // City name next to each bar
   const cityName = cityG.append('text')
     .text(d => d.name)
-    .attr('x', d => d.cigg*sigsMultiplier + 15)
+    .attr('x', d => d.cigg*sigsMultiplier + 5)
     .attr('y', barDims.height/2)
     .attr('dy', '0.35em')
     .style('fill', cityNameFill)

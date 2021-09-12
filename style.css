@@ -23,10 +23,15 @@ body {
   width: 100%;
 }
 
+section {
+  margin-bottom: 70px;
+}
+
 
 /*********************** Hero Section ***********************/
 .hero-section {
   position: relative;
+  margin-bottom: 0;
 }
 
 .hero-img {
@@ -101,6 +106,8 @@ body {
 /*Summary graph*/
 .summary-graph-img {
   width: 70%;
+  margin: auto;
+  text-align: center;
 }
 
 /********************** City Search Box **********************/

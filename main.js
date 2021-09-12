@@ -37,7 +37,7 @@ const sigsContainer = d3.select("#cigs-container")
 // For the summary graph
 const summaryGraphContainer = d3.select('#summary-graph-container')
   .append('svg')
-  .attr('width', 350)
+  .attr('width', 320)
   .attr('height', 1250)
 
 // Remove content for IE
