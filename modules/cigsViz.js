@@ -23,6 +23,11 @@ const cigsViz = (container, selectedCity, cityData, numCigs, sigsDims) => {
       .style('height', `${sigsDims.height}px`)
       .style('width', `${sigsDims.width}px`)
       .style('opacity', (d, i) => i< numCigs ? 1 : 0.1)
+
+  // Add number of cigs displayed as text
+  container.selectAll('.num-cigs-display').data([null]).join('p')
+    .classed('num-cigs-display', true)
+    .html(`${numCigs} cigarettes`)
 }
 
 // Dimensions for the cigs in graph - need for responsiveness

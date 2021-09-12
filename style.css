@@ -210,6 +210,13 @@ section {
   margin: auto;
 }
 
+
+/********************** Cigs Viz **********************/
+.num-cigs-display {
+  opacity: 90%;
+}
+
+
 /********************** Methodology **********************/
 .methodology-section {
   background-color: var(--lightColour);
