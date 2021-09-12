@@ -86,6 +86,14 @@ body {
   transition: all 0.3s ease;
 }
 
+.article-summary {
+  margin: 20px 0;
+  padding: 20px 0;
+  font-style: italic;
+  border-bottom: 3px solid rgb(85, 78, 79);
+  border-top: 3px solid rgb(85, 78, 79);
+}
+
 .article-content-section p {
   margin-bottom: 20px;
 }
@@ -96,6 +104,14 @@ body {
   position: relative;
   margin: auto;
   width: 300px; 
+}
+
+.city-menu-instructions {
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  text-align: left;
+  opacity: 0.7;
+  line-height: 1.2;
 }
 
 .city-input {

@@ -8,6 +8,9 @@ import { cigsViz, sigsDimsSmall, sigsDimsLarge } from "./modules/cigsViz.js"
 
 // Programmatically create the city menu input and list as we don't want to have as HTML 
 const cityMenu = d3.select("#city-menu")
+const cityMenuInstructions = cityMenu.append('p')
+  .attr('class', 'city-menu-instructions')
+  .text('Search for and click on your city to find out how many cigarettes you have effectively smoked because of last week\'s pollution.')
 const cityInput = cityMenu.append('input')
   .attr('type', 'text')
   .attr('class', 'city-input')
@@ -27,7 +30,7 @@ d3.select('#num-particles-container').append('small').html('PM2.5')
 const sigsContainer = d3.select("#cigs-container")
 
 // Remove content for IE
-d3.select('#ie-testing').remove()
+d3.select('.ie-content').remove()
 
 // Initialise data 
 let rawData;
