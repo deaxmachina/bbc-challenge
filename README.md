@@ -1,3 +1,7 @@
+# About 
+Assignment as part of BBC software engineer application process. 
+Goal: “They need you to build an interactive project where users will select an Indian city and have their local air quality displayed in cigarettes and particulate matter.”
+
 ## Usage 
 The build is very simple, it can be opened with live-server or similar, or simply with the html’s URL. I chose not to use webpack or similar, and modules are not installed with node. In terms of external modules, I only used D3 and an IE CSS polyfill. 
 
